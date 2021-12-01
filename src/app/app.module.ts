@@ -8,6 +8,11 @@ import { ClientListComponent } from './component/client-list/client-list.compone
 import { ClientAddComponent } from './component/client-add/client-add.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './component/login/login.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     ClientListComponent,
     ClientAddComponent,
+    LoginComponent,
+    DashboardComponent,
 
   ],
   imports: [
@@ -23,8 +30,9 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

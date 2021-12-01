@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Client } from '../model/client';
 
 @Injectable({
@@ -11,11 +11,16 @@ export class ClientService {
 
   constructor(private http:HttpClient) { }
 
+
   getClients(){
 
     //return this.http.get<any>("https://pokeapi.co/api/v2/pokemon/ditto")
     //return this.http.get<any>("https://randomapi.com/api/6de6abfedb24f889e0b5f675edc50deb")
-    return this.http.get("http://127.0.0.1:8000/api/clientes/");
+    var reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'token cbe45713903f0e159565553e96fd62d3f3f184a3',
+    });
+    return this.http.get("http://127.0.0.1:8000/api/clientes/",{ headers: reqHeader });
     /*
     return this.http.get<any>("http://127.0.0.1:8000/api/clientes/")
     .pipe(map((res:any)=>{
