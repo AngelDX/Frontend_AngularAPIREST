@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/model/client';
 import { ClientService } from 'src/app/service/client.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-client-list',
@@ -13,7 +14,7 @@ export class ClientListComponent implements OnInit {
   public clientList:any;
   clientes:any;
 
-  constructor(private clientService:ClientService,private router: Router) { }
+  constructor(private clientService:ClientService,private router: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.onList();
@@ -29,11 +30,12 @@ export class ClientListComponent implements OnInit {
   onEdit(client:Client){
     console.log(client);
     this.clientService.selectClient=Object.assign({},client);
-    this.router.navigate(["addclient"]);
+    this.router.navigate(["clientes/addclient"]);
   }
 
   onDelete(id:number){
     console.log(id);
+
     if(confirm("Estas seguro que vas a eliminar este producto?")){
       this.clientService.deleteClient(id).subscribe((response) => {
         //console.log(response);

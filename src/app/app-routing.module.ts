@@ -8,9 +8,9 @@ import { LoginComponent } from './component/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '',component:ClientListComponent },
-  { path: 'addclient',component:ClientAddComponent},
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
+  { path: 'clientes',component:ClientListComponent },
+  { path: 'clientes/addclient',component:ClientAddComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate : [AuthGuard] }
 ];
 

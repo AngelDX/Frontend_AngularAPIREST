@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/service/auth.service'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public email:string="";
   public password:string="";
 
-  constructor( private formBuilder: FormBuilder,private router: Router,private authService: AuthService) {
+  constructor(private router: Router,private authService: AuthService,private toastr: ToastrService) {
     /*
     this.loginForm = this.formBuilder.group({
       userid: ['', Validators.required],
@@ -42,12 +42,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin(){
-  	this.authService.loginEmail(this.email,this.password)
-    .subscribe((token:any)=>{
-      console.log(token);
-
-    })
-    this.router.navigate(['/dashboard']);
+  	this.authService.loginEmail(this.email,this.password).subscribe((token:any)=>{
+      console.log(token.token);
+      localStorage.setItem('isLoggedIn',"true");
+      localStorage.setItem('token', token.token);
+      this.toastr.success('Bienvenido: '+this.email);
+      this.router.navigate(['/dashboard']);
+    },err=>{
+      console.log("error: "+err);
+      this.toastr.info('El Usuario no tiene accesos');
+    }
+    );
   }
 
   /*

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <main class="container mt-5">
     <h1 class="pt-3">Gestión de Clientes</h1>
     <a class="btn btn-primary text-white add" routerLink="addclient">
@@ -24,8 +25,8 @@
             <td>{{ item.celular }}</td>
             <td>{{ item.email }}</td>
             <td>
-                <a class="btn btn-success" (click)="onEdit(item)">Editar</a> |
-                <a class="btn btn-success" (click)="onDelete(item.id)">Eliminar</a>
+                <a class="btn btn-warning" (click)="onEdit(item)"><i class="far fa-edit"></i></a> |
+                <a class="btn btn-danger" (click)="onDelete(item.id)"><i class="far fa-trash-alt"></i></a>
             </td>
           </tr>
         </tbody>

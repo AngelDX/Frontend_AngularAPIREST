@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { from, Observable, Subject,of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,36 @@ export class AuthService {
     //return this.http.get("http://127.0.0.1:8000/api-token-auth/",{ headers: reqHeader,params: params });
     return this.http.post("http://127.0.0.1:8000/api-token-auth/",{ username: email,password:pass });
   }
+
+
+  isLoggedIn(){
+
+    let status = false; //No se actuliza el inLogin a true
+    if (localStorage.getItem('isLoggedIn') == "true") {
+       status = true;
+    }else {
+      status = false;
+    }
+    /*
+    let status=new Observable<Boolean>(susbriber=>{  //permite actualizar la variable islogin
+      susbriber.next(localStorage.getItem('isLoggedIn'));
+    });
+    */
+    //let status=localStorage.getItem('isLoggedIn');
+   return status;
+  }
+
+/*
+  isLoggedIn():Observable<boolean>{
+
+    if (localStorage.getItem('isLoggedIn')=="true") {
+      return of(true);
+    } else {
+      return of(false);
+    }
+
+  }
+*/
+
 
 }

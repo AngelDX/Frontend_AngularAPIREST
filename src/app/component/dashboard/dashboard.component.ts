@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -9,17 +9,17 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class DashboardComponent implements OnInit {
   id?: string | null;
+  isLogin?:boolean;
+
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.id = localStorage.getItem('token');
-    //console.log(this.id);
+    this.id = localStorage.getItem('isLoggedIn');
+    console.log("dashboard: "+this.id);
   }
 
-  logout() {
-    console.log('logout');
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+
+
+
 }

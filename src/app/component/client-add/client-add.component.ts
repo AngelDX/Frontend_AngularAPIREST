@@ -21,11 +21,11 @@ export class ClientAddComponent implements OnInit {
     //console.log(clientForm.value);
     if(clientForm.value.id==null){
       this.clientService.createClient(clientForm.value).subscribe((response) => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/clientes"]);
       });
     }else{
       this.clientService.updateClient(clientForm.value.id,clientForm.value).subscribe((response) => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/clientes"]);
       });
     }
 

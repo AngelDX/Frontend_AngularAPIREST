@@ -2,7 +2,7 @@
   <div class="card-body">
       <h4 class="text-center">Registro de Clientes</h4>
       <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
-          <input type="text" name="id" [(ngModel)]="clientService.selectClient.id">
+          <input type="hidden" name="id" [(ngModel)]="clientService.selectClient.id">
           <div class="form-group mb-3">
             <input type="text" class="form-control" name="nombres"
             [(ngModel)]="clientService.selectClient.nombres"
@@ -35,7 +35,7 @@
             <button class="btn btn-secondary me-2" type="reset" (click)="resetForm(clientForm)">
                 <i class="fas fa-sync-alt"></i> Resetear
             </button>
-            <button class="btn btn-secondary" type="button" routerLink="/">
+            <button class="btn btn-secondary" type="button" routerLink="/clientes">
               <i class="fas fa-hand-point-left"></i> Cancelar
           </button>
           </div>
