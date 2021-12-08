@@ -35,26 +35,8 @@ export class AuthService {
     }else {
       status = false;
     }
-    /*
-    let status=new Observable<Boolean>(susbriber=>{  //permite actualizar la variable islogin
-      susbriber.next(localStorage.getItem('isLoggedIn'));
-    });
-    */
-    //let status=localStorage.getItem('isLoggedIn');
    return status;
   }
-
-/*
-  isLoggedIn():Observable<boolean>{
-
-    if (localStorage.getItem('isLoggedIn')=="true") {
-      return of(true);
-    } else {
-      return of(false);
-    }
-
-  }
-*/
 
 
 }
